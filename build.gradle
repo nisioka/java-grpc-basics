@@ -1,0 +1,61 @@
+group 'com.sun0range'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'com.google.protobuf'
+apply plugin: 'idea'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.3'
+    }
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral();
+    jcenter();
+}
+
+def grpcVersion = '1.8.0'
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile "io.grpc:grpc-netty:${grpcVersion}"
+    compile "io.grpc:grpc-protobuf:${grpcVersion}"
+    compile "io.grpc:grpc-stub:${grpcVersion}"
+}
+
+protobuf {
+    protoc {
+        // gRPC pluginの取得。
+        artifact = 'com.google.protobuf:protoc:3.2.0'
+    }
+    plugins {
+        grpc {
+            // gRPC pluginの取得設定
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.4.0'
+        }
+    }
+    generateProtoTasks {
+        // pluginを動かす最小設定。
+        all()*.plugins {
+            // ビルド時にgRPC pluginの適用。
+            grpc {}
+        }
+    }
+}
+
+// for IDEA
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
+    }
+}

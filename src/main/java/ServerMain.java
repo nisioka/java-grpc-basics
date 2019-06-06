@@ -1,18 +1,22 @@
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import io.grpc.netty.NettyServerBuilder;
 import server.EchoService;
 
 import java.io.IOException;
 
+/**
+ * サーバを立ち上げる。
+ */
 public class ServerMain {
+
     public static void main(String[] args) throws IOException, InterruptedException {
-        NettyServerBuilder builder = (NettyServerBuilder)ServerBuilder.forPort(50051)
-                .addService(new EchoService());
-        Server server = builder.build();
+        final int portNumber = 50051;
+        Server server = ServerBuilder.forPort(portNumber)
+                .addService(new EchoService()) // gRPCのサービスを紐づける。
+                .build();
 
         server.start();
-        System.out.println("server started.");
+        System.out.println("start server on port:" + portNumber);
         server.awaitTermination();
     }
 }

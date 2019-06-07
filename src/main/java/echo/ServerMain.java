@@ -1,6 +1,7 @@
+package echo;
+
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import server.EchoService;
 
 import java.io.IOException;
 

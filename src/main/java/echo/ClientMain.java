@@ -1,5 +1,5 @@
-import echo.Echo;
-import echo.EchoServiceGrpc;
+package echo;
+
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 

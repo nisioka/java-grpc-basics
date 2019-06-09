@@ -1,5 +1,5 @@
-import echo.Echo;
-import echo.EchoServiceGrpc;
+package echo;
+
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -13,12 +13,12 @@ public class ClientMain {
                 .usePlaintext(true) // 簡単のためサーバ証明書なしのローカル通信とする。
                 .build();
 
-        EchoServiceGrpc.EchoServiceBlockingStub stub = EchoServiceGrpc.newBlockingStub(channel);
+        var stub = EchoServiceGrpc.newBlockingStub(channel);
 
         // "hello world."メッセージをリクエストする。
-        Echo.EchoRequest request = Echo.EchoRequest.newBuilder().setMessage("hello world.").build();
+        var request = Echo.EchoRequest.newBuilder().setMessage("hello world.").build();
 
-        Echo.EchoResponse response = stub.echo(request);
+        var response = stub.echo(request);
 
         System.out.println("response message: " + response.getMessage());
     }

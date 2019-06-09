@@ -1,7 +1,5 @@
-package server;
+package echo;
 
-import echo.Echo;
-import echo.EchoServiceGrpc;
 import io.grpc.stub.StreamObserver;
 
 public class EchoService extends EchoServiceGrpc.EchoServiceImplBase {

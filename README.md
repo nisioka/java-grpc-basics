@@ -19,4 +19,4 @@ http://opensource.org/licenses/mit-license.php
 
 ## 解説記事
 
-[分かりやすい技術ブログ-実装しながら学ぶgRPC【Java】]
+[分かりやすい技術ブログ-実装しながら学ぶgRPC【Java】](https://sun0range.com/information-technology/java-grpc)
